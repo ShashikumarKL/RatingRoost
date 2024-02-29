@@ -1,0 +1,12 @@
+/* static/styles.css */
+.star-rating {
+    color: #ffc107; /* Star color */
+    font-size: 24px; /* Star size */
+}
+
+.star-rating .star:hover,
+.star-rating .star.active {
+    color: #ff9900; /* Hover and active star color */
+}
+
+
