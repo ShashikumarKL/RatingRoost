@@ -7,18 +7,25 @@ import 'dart:io';
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._();
-  DatabaseHelper._();
 
-  static Database? _database;
+  final String? _customPath;
+
+  DatabaseHelper._({String? customPath}) : _customPath = customPath;
+
+  factory DatabaseHelper.forTesting(String path) {
+    return DatabaseHelper._(customPath: path);
+  }
+
+  Database? _database;
   Future<Database> get database async {
     _database ??= await _initDb();
     return _database!;
   }
 
   Future<Database> _initDb() async {
-    final directory = await getApplicationDocumentsDirectory();
-    final path = join(directory.path, 'rating_roost.db');
-    return await openDatabase(path, version: 1, onCreate: _onCreate);
+    final dbPath = _customPath ??
+        join((await getApplicationDocumentsDirectory()).path, 'rating_roost.db');
+    return await openDatabase(dbPath, version: 1, onCreate: _onCreate);
   }
 
   Future<void> _onCreate(Database db, int version) async {
