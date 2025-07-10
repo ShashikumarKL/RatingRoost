@@ -1,5 +1,6 @@
 name: rating_roost_flutter
 description: A simple Flutter app for books and reviews.
+version: 1.0.0+1
 publish_to: 'none'
 
 environment:
