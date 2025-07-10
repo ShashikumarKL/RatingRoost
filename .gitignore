@@ -11,3 +11,14 @@ pubspec.lock
 android/.gradle/
 android/app/build/
 ios/Pods/
+
+# Standard Flutter platform directories
+android/
+ios/
+linux/
+macos/
+windows/
+
+# IDE and editor settings
+.vscode/
+.idea/
