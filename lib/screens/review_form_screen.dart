@@ -32,6 +32,7 @@ class _ReviewFormScreenState extends State<ReviewFormScreen> {
           id: widget.review!.id,
           bookId: widget.book.id!,
           content: _controller.text,
+          isLiked: widget.review!.isLiked,
         ),
       );
     }
