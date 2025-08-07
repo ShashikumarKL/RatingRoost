@@ -53,6 +53,17 @@ class _ReviewListScreenState extends State<ReviewListScreen> {
     _loadReviews();
   }
 
+  void _toggleLike(Review review) async {
+    final updated = Review(
+      id: review.id,
+      bookId: review.bookId,
+      content: review.content,
+      isLiked: !review.isLiked,
+    );
+    await DatabaseHelper.instance.updateReview(updated);
+    _loadReviews();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +77,15 @@ class _ReviewListScreenState extends State<ReviewListScreen> {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+                IconButton(
+                  icon: Icon(
+                    review.isLiked
+                        ? Icons.thumb_up
+                        : Icons.thumb_up_off_alt,
+                    color: review.isLiked ? Colors.blue : null,
+                  ),
+                  onPressed: () => _toggleLike(review),
+                ),
                 IconButton(
                   icon: const Icon(Icons.edit),
                   onPressed: () => _editReview(review),
